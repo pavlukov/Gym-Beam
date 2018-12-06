@@ -1,0 +1,2 @@
+class SportSection < ApplicationRecord
+end

@@ -1,0 +1,32 @@
+<%= form_with(model: ticket, local: true) do |form| %>
+  <% if ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% ticket.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :expire_date %>
+    <%= form.date_select :expire_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visits_remaining %>
+    <%= form.number_field :visits_remaining %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cost %>
+    <%= form.text_field :cost %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
