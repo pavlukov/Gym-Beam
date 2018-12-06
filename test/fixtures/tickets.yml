@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expire_date: 2018-12-06
+  visits_remaining: 1
+  cost: 1.5
+
+two:
+  expire_date: 2018-12-06
+  visits_remaining: 1
+  cost: 1.5

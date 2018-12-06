@@ -1,0 +1,32 @@
+<%= form_with(model: sport_section, local: true) do |form| %>
+  <% if sport_section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sport_section.errors.count, "error") %> prohibited this sport_section from being saved:</h2>
+
+      <ul>
+      <% sport_section.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coach_name %>
+    <%= form.text_field :coach_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
