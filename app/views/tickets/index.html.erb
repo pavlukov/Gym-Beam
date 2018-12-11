@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Sport sections</th>
       <th>Expire date</th>
       <th>Visits remaining</th>
       <th>Cost</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr>
+        <td><%= ticket.sport_sections.to_a.map { |section| section.name } %></td>
         <td><%= ticket.expire_date %></td>
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>

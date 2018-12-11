@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Sport sections:</strong>
+  <%= @ticket.sport_sections.to_a.map { |section| section.name } %>
+</p>
+
+<p>
   <strong>Expire date:</strong>
   <%= @ticket.expire_date %>
 </p>

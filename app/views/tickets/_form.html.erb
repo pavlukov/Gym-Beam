@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :sport_sections %>
+    <%= form.collection_select :sport_section_ids, SportSection.all, :id, :name %>
+  </div>
+
+  <div class="field">
     <%= form.label :expire_date %>
     <%= form.date_select :expire_date %>
   </div>

@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.joins(:users).where(users: { id: current_user.id})
   end
 
   # GET /tickets/1
@@ -25,6 +25,8 @@ class TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.sport_sections << SportSection.find(ticket_params[:sport_section_ids]) if ticket_params[:sport_section_ids]
+    @ticket.users << current_user
 
     respond_to do |format|
       if @ticket.save
