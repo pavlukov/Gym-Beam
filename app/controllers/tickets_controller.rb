@@ -25,7 +25,6 @@ class TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.sport_sections << SportSection.find(ticket_params[:sport_section_ids]) if ticket_params[:sport_section_ids]
     @ticket.users << current_user
 
     respond_to do |format|
@@ -71,6 +70,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost)
+      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost, :sport_section_ids => [])
     end
 end
