@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_110522) do
+ActiveRecord::Schema.define(version: 2018_12_07_112251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sport_sections", force: :cascade do |t|
+    t.string "name"
+    t.string "coach_name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sport_sections_tickets", id: false, force: :cascade do |t|
+    t.bigint "sport_section_id", null: false
+    t.bigint "ticket_id", null: false
+    t.index ["sport_section_id", "ticket_id"], name: "index_sport_sections_tickets_on_sport_section_id_and_ticket_id"
+  end
+
+  create_table "sport_sections_users", id: false, force: :cascade do |t|
+    t.bigint "sport_section_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["sport_section_id", "user_id"], name: "index_sport_sections_users_on_sport_section_id_and_user_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.date "expire_date"
+    t.integer "visits_remaining"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tickets_users", id: false, force: :cascade do |t|
+    t.bigint "ticket_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["ticket_id", "user_id"], name: "index_tickets_users_on_ticket_id_and_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

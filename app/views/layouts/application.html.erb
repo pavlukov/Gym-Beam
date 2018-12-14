@@ -1,29 +1,21 @@
-x<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>GymBeam</title>
+    <title>Gym Beam - service for booking gym memberships</title>
     <%= csrf_meta_tags %>
-
+ 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+ 
   <body>
-    <%= render 'layouts/navigation' %>
-    <div id='flash'>
+    <%= render "layouts/navigation" %>
+    <div id="flash">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
       <% end %>
     </div>
-
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-    
-    <div class='container-fluid'>
+    <div class="container-fluid">
       <%= yield %>
     </div>
   </body>

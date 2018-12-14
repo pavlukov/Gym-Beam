@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sport sections:</strong>
+  <%= @ticket.sport_sections.to_a.map { |section| section.name } %>
+</p>
+
+<p>
+  <strong>Expire date:</strong>
+  <%= @ticket.expire_date %>
+</p>
+
+<p>
+  <strong>Visits remaining:</strong>
+  <%= @ticket.visits_remaining %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @ticket.cost %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
