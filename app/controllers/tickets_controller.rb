@@ -1,10 +1,16 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
+  def add
+    #binding.irb
+    @ticket = Ticket.find(ticket_params[:ticket_id])
+    @ticket.users << current_user
+  end
+
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.joins(:users).where(users: { id: current_user.id})
+    @tickets = Ticket.all # .joins(:users).where(users: { id: current_user.id})
   end
 
   # GET /tickets/1
@@ -25,7 +31,6 @@ class TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.users << current_user
 
     respond_to do |format|
       if @ticket.save
