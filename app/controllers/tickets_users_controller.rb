@@ -24,17 +24,10 @@ class TicketsUsersController < ApplicationController
   # POST /tickets_users
   # POST /tickets_users.json
   def create
-    @tickets_user = TicketsUser.new(tickets_user_params)
-
-    respond_to do |format|
-      if @tickets_user.save
-        format.html { redirect_to @tickets_user, notice: 'Tickets user was successfully created.' }
-        format.json { render :show, status: :created, location: @tickets_user }
-      else
-        format.html { render :new }
-        format.json { render json: @tickets_user.errors, status: :unprocessable_entity }
-      end
-    end
+    #@tickets_user = TicketsUser.new(tickets_user_params)
+    @ticket = Ticket.find(params[:ticket_id])
+    @ticket.users << current_user
+    @ticket.save!
   end
 
   # PATCH/PUT /tickets_users/1
