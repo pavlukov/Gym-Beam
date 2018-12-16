@@ -1,10 +1,16 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
+  def add
+    @ticket = Ticket.find(params[:ticket_id])
+    @ticket.users << current_user
+    @ticket.save!
+  end
+
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.joins(:users).where(users: { id: current_user.id})
+    @tickets = Ticket.all # .joins(:users).where(users: { id: current_user.id})
   end
 
   # GET /tickets/1
@@ -25,8 +31,6 @@ class TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.sport_sections << SportSection.find(ticket_params[:sport_section_ids]) if ticket_params[:sport_section_ids]
-    @ticket.users << current_user
 
     respond_to do |format|
       if @ticket.save
@@ -71,6 +75,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost)
+      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost, :sport_section_ids => [])
     end
 end

@@ -16,13 +16,18 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr>
-        <td><%= ticket.sport_sections.to_a.map { |section| section.name } %></td>
+        <td>
+          <% ticket.sport_sections.to_a.each do |section| %>
+            <%= ticket.sport_sections.to_a.last != section ? section.name + ',' : section.name %>
+          <% end %>
+        </td>
         <td><%= ticket.expire_date %></td>
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add', :controller => 'tickets', :action => 'add', id: ticket.id %></td>
       </tr>
     <% end %>
   </tbody>

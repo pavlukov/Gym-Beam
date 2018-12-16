@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :sport_sections %>
-    <%= form.collection_select :sport_section_ids, SportSection.all, :id, :name %>
+    <%= form.collection_check_boxes :sport_section_ids, SportSection.all, :id, :name, multiple: true %>
   </div>
 
   <div class="field">
