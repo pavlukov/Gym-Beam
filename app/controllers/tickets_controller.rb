@@ -2,9 +2,9 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def add
-    #binding.irb
-    @ticket = Ticket.find(ticket_params[:ticket_id])
+    @ticket = Ticket.find(params[:ticket_id])
     @ticket.users << current_user
+    @ticket.save!
   end
 
   # GET /tickets

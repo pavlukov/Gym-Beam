@@ -27,7 +27,7 @@
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add', tickets_add_path(ticket_id: ticket.id), method: :post %></td>
+        <td><%= link_to 'Add', :controller => 'tickets', :action => 'add', id: ticket.id %></td>
       </tr>
     <% end %>
   </tbody>
