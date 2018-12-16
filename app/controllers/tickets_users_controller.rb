@@ -24,10 +24,9 @@ class TicketsUsersController < ApplicationController
   # POST /tickets_users
   # POST /tickets_users.json
   def create
-    #@tickets_user = TicketsUser.new(tickets_user_params)
-    @ticket = Ticket.find(params[:ticket_id])
-    @ticket.users << current_user
-    @ticket.save!
+    ticket = Ticket.find(params[:id])
+    ticket.users << current_user
+    ticket.save!
   end
 
   # PATCH/PUT /tickets_users/1
@@ -47,11 +46,9 @@ class TicketsUsersController < ApplicationController
   # DELETE /tickets_users/1
   # DELETE /tickets_users/1.json
   def destroy
-    @tickets_user.destroy
-    respond_to do |format|
-      format.html { redirect_to tickets_users_url, notice: 'Tickets user was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    ticket_user = TicketsUser.find(params[:id])
+    ticket_user.destroy
+    redirect_to tickets_users_url
   end
 
   private
