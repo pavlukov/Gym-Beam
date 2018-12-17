@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  resources :tickets_users
   resources :tickets
   devise_for :users
   resources :sport_sections
-  root to: 'tickets#index'
+  root to: 'tickets_users#index'
   post 'tickets/add'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
