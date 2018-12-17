@@ -24,9 +24,7 @@ class TicketsUsersController < ApplicationController
   # POST /tickets_users
   # POST /tickets_users.json
   def create
-    ticket = Ticket.find(params[:id])
-    ticket.users << current_user
-    ticket.save!
+    @TicketsUser = TicketsUser.create(ticket_id: params[:id], user_id: current_user.id)
   end
 
   # PATCH/PUT /tickets_users/1

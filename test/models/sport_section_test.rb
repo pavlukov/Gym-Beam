@@ -8,6 +8,7 @@
 #  description :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  adress      :string
 #
 
 require 'test_helper'
