@@ -4,7 +4,7 @@ class TicketsUsersController < ApplicationController
   # GET /tickets_users
   # GET /tickets_users.json
   def index
-    @tickets_users = TicketsUser.all
+    @tickets = current_user.tickets.order(:id).page params[:page]
   end
 
   # GET /tickets_users/1
@@ -24,7 +24,9 @@ class TicketsUsersController < ApplicationController
   # POST /tickets_users
   # POST /tickets_users.json
   def create
-    @TicketsUser = TicketsUser.create(ticket_id: params[:id], user_id: current_user.id)
+    @tickets_user = TicketsUser.create(ticket_id: params[:id], user_id: current_user.id)
+    current_user.sport_sections << Ticket.find(params[:id]).sport_sections
+    current_user.save!
   end
 
   # PATCH/PUT /tickets_users/1

@@ -11,6 +11,8 @@
 #
 
 class Ticket < ApplicationRecord
-  has_and_belongs_to_many :users
+  paginates_per 5
+  has_many :tickets_users
+  has_many :users, through: :tickets_users
   has_and_belongs_to_many :sport_sections
 end

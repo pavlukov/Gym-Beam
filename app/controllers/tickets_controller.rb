@@ -1,16 +1,10 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
-  def add
-    @ticket = Ticket.find(params[:id])
-    @ticket.users << current_user
-    @ticket.save!
-  end
-
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all # .joins(:users).where(users: { id: current_user.id})
+    @tickets = Ticket.all.order(:id).page params[:page]
   end
 
   # GET /tickets/1

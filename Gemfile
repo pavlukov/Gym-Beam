@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
+gem 'kaminari'
 
 group :development do
   gem 'annotate'
