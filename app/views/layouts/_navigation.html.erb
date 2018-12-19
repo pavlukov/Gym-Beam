@@ -6,9 +6,7 @@
     <div id="navbar">
   
     <ul class="nav navbar-nav pull-right">
-      <li><%= link_to 'My tickets', tickets_users_path %></li>
-      <li><%= link_to 'Tickets', tickets_path %></li>
-      <li><%= link_to 'Sport sections', sport_sections_path %></li>
+      <li><% link_to 'Home', root_path %></li>
       <ul class="nav navbar-nav pull-right">
         <% if user_signed_in? %>
         <li><%= current_user.email %></li>

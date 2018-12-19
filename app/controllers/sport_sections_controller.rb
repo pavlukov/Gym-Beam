@@ -4,7 +4,7 @@ class SportSectionsController < ApplicationController
   # GET /sport_sections
   # GET /sport_sections.json
   def index
-    @sport_sections = SportSection.all.order(:id).page params[:page]
+    @sport_sections = SportSection.all
   end
 
   # GET /sport_sections/1
