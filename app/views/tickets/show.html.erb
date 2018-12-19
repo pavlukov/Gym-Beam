@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Sport sections:</strong>
+  <% @ticket.sport_sections.to_a.each do |section| %>
+    <%= @ticket.sport_sections.to_a.last != section ? section.name + ',' : section.name %>
+  <% end %>
+</p>
+
+<p>
   <strong>Expire date:</strong>
   <%= @ticket.expire_date %>
 </p>
