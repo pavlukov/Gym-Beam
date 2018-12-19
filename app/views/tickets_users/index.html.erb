@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% current_user.tickets.each do |ticket| %>
+    <% @tickets.each do |ticket| %>
       <tr>
         <td>
           <% ticket.sport_sections.to_a.each do |section| %>
@@ -34,5 +34,6 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @tickets %>
 
 <br>
