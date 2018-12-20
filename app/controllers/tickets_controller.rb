@@ -5,7 +5,6 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @order = params[:order]
-    #binding.irb
     @tickets = Ticket.all.order(@order).page params[:page]
   end
 
