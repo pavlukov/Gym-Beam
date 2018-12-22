@@ -4,7 +4,7 @@ class TicketsUsersController < ApplicationController
   # GET /tickets_users
   # GET /tickets_users.json
   def index
-    @tickets = current_user.tickets.order(:id).page params[:page]
+    @tickets = current_user .tickets.order(:id).page params[:page]
   end
 
   # GET /tickets_users/1
