@@ -40,6 +40,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
 gem 'kaminari'
+gem 'acts_as_commentable_with_threading'
 
 group :development do
   gem 'annotate'
