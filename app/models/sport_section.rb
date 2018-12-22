@@ -14,5 +14,5 @@
 class SportSection < ApplicationRecord
   paginates_per 5
   has_and_belongs_to_many :users
-  has_and_belongs_to_many :sport_sections
+  has_and_belongs_to_many :tickets
 end
