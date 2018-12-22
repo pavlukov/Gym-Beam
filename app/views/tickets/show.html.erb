@@ -22,5 +22,7 @@
   <%= @ticket.cost %>
 </p>
 
+<%= render partial: "comments/template", locals: {commentable: @ticket, new_comment: @comment} %>
+
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>

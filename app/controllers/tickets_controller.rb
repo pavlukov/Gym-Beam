@@ -10,6 +10,8 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.json
   def show
+    @ticket = Ticket.find(params[:id])
+    @new_comment = Comment.build_from(@ticket, current_user.id, '')
   end
 
   # GET /tickets/new
