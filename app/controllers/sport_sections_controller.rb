@@ -10,6 +10,8 @@ class SportSectionsController < ApplicationController
   # GET /sport_sections/1
   # GET /sport_sections/1.json
   def show
+    @sport_section = SportSection.find(params[:id])
+    @new_comment = Comment.build_from(@sport_section, current_user.id, '')
   end
 
   # GET /sport_sections/new

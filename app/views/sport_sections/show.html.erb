@@ -15,5 +15,12 @@
   <%= @sport_section.description %>
 </p>
 
+<p>
+  <strong>Address:</strong>
+  <%= @sport_section.address %>
+</p>
+
+<%= render partial: "comments/template", locals: {commentable: @sport_section, new_comment: @comment} %>
+
 <%= link_to 'Edit', edit_sport_section_path(@sport_section) %> |
 <%= link_to 'Back', sport_sections_path %>

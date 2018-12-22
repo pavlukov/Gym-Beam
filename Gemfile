@@ -41,6 +41,7 @@ gem 'devise'
 gem 'pundit'
 gem 'kaminari'
 gem 'acts_as_commentable_with_threading'
+gem 'jquery-rails'
 
 group :development do
   gem 'annotate'
