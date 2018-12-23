@@ -4,7 +4,8 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all.order(:id).page params[:page]
+    @order = params[:order]
+    @tickets = Ticket.all.order(@order).page params[:page]
   end
 
   # GET /tickets/1
@@ -71,6 +72,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost, :sport_section_ids => [])
+      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost, :order, :sport_section_ids => [])
     end
 end
