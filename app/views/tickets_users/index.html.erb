@@ -6,9 +6,27 @@
   <thead>
     <tr>
       <th>Sport sections</th>
-      <th>Expire date</th>
-      <th>Visits remaining</th>
-      <th>Cost</th>
+      <th>
+        <% if @order == 'expire_date' %>
+          <%= link_to "Expire date\u2713", controller: 'tickets_users', action: 'index' %>
+        <% else %>
+          <%= link_to 'Expire date', controller: 'tickets_users', action: 'index', order: :expire_date %>
+        <% end %>
+      </th>
+      <th>
+        <% if @order == 'visits_remaining' %>
+          <%= link_to "Visits\u2713", controller: 'tickets_users', action: 'index' %>
+        <% else %>
+          <%= link_to 'Visits', controller: 'tickets_users', action: 'index', order: :visits_remaining %>
+        <% end %>
+      </th>
+      <th>
+        <% if @order == 'cost' %>
+          <%= link_to "Cost\u2713", controller: 'tickets_users', action: 'index' %>
+        <% else %>
+          <%= link_to 'Cost', controller: 'tickets_users', action: 'index', order: :cost %>
+        <% end %>
+      </th>
       <th colspan="3"></th>
     </tr>
   </thead>

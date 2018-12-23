@@ -4,7 +4,8 @@ class TicketsUsersController < ApplicationController
   # GET /tickets_users
   # GET /tickets_users.json
   def index
-    @tickets = current_user .tickets.order(:id).page params[:page]
+    @order = params[:order]
+    @tickets = current_user.tickets.order(@order).page params[:page]
   end
 
   # GET /tickets_users/1
@@ -65,5 +66,6 @@ class TicketsUsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tickets_user_params
       params.fetch(:tickets_user, {})
+
     end
 end

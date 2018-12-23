@@ -4,7 +4,8 @@ class SportSectionsController < ApplicationController
   # GET /sport_sections
   # GET /sport_sections.json
   def index
-    @sport_sections = SportSection.all.order(:id).page params[:page]
+    @order = params[:order]
+    @sport_sections = SportSection.all.order(@order).page params[:page]
   end
 
   # GET /sport_sections/1
@@ -71,6 +72,6 @@ class SportSectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sport_section_params
-      params.require(:sport_section).permit(:name, :coach_name, :description)
+      params.require(:sport_section).permit(:name, :coach_name, :description,:order)
     end
 end

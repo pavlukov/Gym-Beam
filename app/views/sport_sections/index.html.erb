@@ -5,8 +5,20 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Coach name</th>
+      <th>
+        <% if @order == 'name' %>
+          <%= link_to "Name\u2713", controller: 'sport_sections', action: 'index' %>
+        <% else %>
+          <%= link_to 'Name', controller: 'sport_sections', action: 'index', order: :name %>
+        <% end %>
+      </th>
+      <th>
+        <% if @order == 'coach_name' %>
+          <%= link_to "Coah name\u2713", controller: 'sport_sections', action: 'index' %>
+        <% else %>
+          <%= link_to 'Coach name', controller: 'sport_sections', action: 'index', order: :coach_name %>
+        <% end %>
+      </th>
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
