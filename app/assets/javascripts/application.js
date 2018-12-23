@@ -15,7 +15,3 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-$ ->
-  $('.comment-reply').click ->
-    $(this).closest('.comment').find('.reply-form').toggle()
-    return false;

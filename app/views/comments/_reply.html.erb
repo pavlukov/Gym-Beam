@@ -1,6 +1,7 @@
 <% comments.each do |comment| %>  
   <div class="comments-show">
     <div class="comment">
+      <p class="username"><%= comment.user.email %></p>
       <p><%= comment.body %><br></p>
       <div class="comment-nav"><a href="." class="comment-reply">Reply</a></div>
       <div class="reply-form">
