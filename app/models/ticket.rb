@@ -11,6 +11,7 @@
 #
 
 class Ticket < ApplicationRecord
+  acts_as_taggable
   acts_as_commentable
   paginates_per 5
   has_many :tickets_users

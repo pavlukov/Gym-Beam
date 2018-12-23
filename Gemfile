@@ -42,6 +42,7 @@ gem 'pundit'
 gem 'kaminari'
 gem 'acts_as_commentable_with_threading'
 gem 'jquery-rails'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'annotate'
