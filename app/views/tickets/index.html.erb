@@ -8,7 +8,7 @@
       <th>Sport sections</th>
       <th>
         <% if @order == 'expire_date' %>
-          <%= link_to "Expire date\u2713", controller: 'tickets', action: 'index' %>
+          <%= link_to "Expire date\u2193", controller: 'tickets', action: 'index' %>
         <% else %>
           <%= link_to 'Expire date', controller: 'tickets', action: 'index', order: :expire_date %>
         <% end %>

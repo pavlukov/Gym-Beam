@@ -33,7 +33,7 @@
 
   <div class='field'>
     <%= form.label :tag_list, 'Tags (separated by commas)' %><br/>
-    <%= form.text_field :tag_list %>
+    <%= form.text_field :tag_list, value: sport_section.tags.pluck(:name).join(', ') %>
   </div>
 
   <div class="actions">

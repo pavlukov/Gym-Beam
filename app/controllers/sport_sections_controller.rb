@@ -5,15 +5,11 @@ class SportSectionsController < ApplicationController
   # GET /sport_sections.json
   def index
     @order = params[:order]
-<<<<<<< HEAD
-    @sport_sections = SportSection.all.order(@order).page params[:page]
-=======
     if params[:tag]
       @sport_sections = SportSection.tagged_with(params[:tag]).order(@order).page params[:page]
     else
       @sport_sections = SportSection.all.order(@order).page params[:page]
     end
->>>>>>> feature/tags
   end
 
   # GET /sport_sections/1

@@ -9,3 +9,16 @@
 <div class="comments-container">
   <%= render partial: "comments/reply", locals: {comments: commentable.root_comments} %>
 </div>
+
+<script>
+	(function() {
+  $(function() {
+    debugger;
+    return $('.comment-reply').click(function() {
+      $(this).closest('.comment').find('.reply-form').toggle();
+      return false;
+    });
+  });
+
+}).call(this);
+</script>
