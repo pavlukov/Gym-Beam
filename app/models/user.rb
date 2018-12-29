@@ -22,8 +22,25 @@ class User < ApplicationRecord
 
   enum role: [:user, :owner, :admin]
   after_initialize :set_default_role, if: :new_record?
+  before_save :set_approved_status
 
   def set_default_role
     self.role ||= :user
+  end
+
+  def set_approved_status
+    if self.owner?
+      self.approved = false
+    else
+      self.approved = true
+    end
+  end
+
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    approved? ? super : :not_approved
   end
 end
