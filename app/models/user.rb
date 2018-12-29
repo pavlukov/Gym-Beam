@@ -19,4 +19,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :tickets
   has_and_belongs_to_many :sport_sections
+
+  enum role: [:user, :owner, :admin]
+  after_initialize :set_default_role, if: :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
 end
