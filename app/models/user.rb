@@ -19,4 +19,28 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :tickets
   has_and_belongs_to_many :sport_sections
+
+  enum role: [:user, :owner, :admin]
+  after_initialize :set_default_role, if: :new_record?
+  before_create :set_approved_status, if: :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
+
+  def set_approved_status
+    if self.owner?
+      self.approved = false
+    else
+      self.approved = true
+    end
+  end
+
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    approved? ? super : :not_approved
+  end
 end
