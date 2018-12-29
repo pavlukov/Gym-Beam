@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   enum role: [:user, :owner, :admin]
   after_initialize :set_default_role, if: :new_record?
-  before_save :set_approved_status
+  before_create :set_approved_status, if: :new_record?
 
   def set_default_role
     self.role ||= :user
