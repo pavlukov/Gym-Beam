@@ -18,7 +18,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE users/reject
   def reject
-
+    user = User.find(params[:id])
+    user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_unapproved_path, notice: 'User rejected.' }
+    end
   end
 end

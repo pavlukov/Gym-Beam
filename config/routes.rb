@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'sport_sections#index', as: :tag
   get 'users/unapproved', to: 'users#unapproved_list'
   post 'users/confirm'
+  delete 'users/reject'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
