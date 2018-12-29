@@ -43,8 +43,10 @@
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>
         <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.owner? %>
+          <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+          <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         <td><%= button_to 'Subscribe', controller: 'tickets_users', action: 'create', id: ticket.id %></td>
       </tr>
     <% end %>
@@ -54,4 +56,6 @@
 
 <br>
 
-<%= link_to 'New Ticket', new_ticket_path %>
+<% if current_user.owner? %>
+  <%= link_to 'New Ticket', new_ticket_path %>
+<% end %>

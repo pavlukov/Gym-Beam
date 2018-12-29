@@ -31,6 +31,7 @@ class SportSectionsController < ApplicationController
   # POST /sport_sections
   # POST /sport_sections.json
   def create
+    authorize current_user
     @sport_section = SportSection.new(sport_section_params)
 
     respond_to do |format|
@@ -47,6 +48,7 @@ class SportSectionsController < ApplicationController
   # PATCH/PUT /sport_sections/1
   # PATCH/PUT /sport_sections/1.json
   def update
+    authorize current_user
     respond_to do |format|
       if @sport_section.update(sport_section_params)
         format.html { redirect_to @sport_section, notice: 'Sport section was successfully updated.' }
@@ -61,6 +63,7 @@ class SportSectionsController < ApplicationController
   # DELETE /sport_sections/1
   # DELETE /sport_sections/1.json
   def destroy
+    authorize current_user
     @sport_section.destroy
     respond_to do |format|
       format.html { redirect_to sport_sections_url, notice: 'Sport section was successfully destroyed.' }

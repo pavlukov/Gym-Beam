@@ -7,7 +7,7 @@
     <tr>
       <th>
         <% if @order == 'name' %>
-          <%= link_to "Name\u11014", controller: 'sport_sections', action: 'index' %>
+          <%= link_to "Name\u2713", controller: 'sport_sections', action: 'index' %>
         <% else %>
           <%= link_to 'Name', controller: 'sport_sections', action: 'index', order: :name %>
         <% end %>
@@ -31,8 +31,10 @@
         <td><%= sport_section.coach_name %></td>
         <td><%= sport_section.description %></td>
         <td><%= link_to 'Show', sport_section %></td>
-        <td><%= link_to 'Edit', edit_sport_section_path(sport_section) %></td>
-        <td><%= link_to 'Destroy', sport_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.owner? %>
+          <td><%= link_to 'Edit', edit_sport_section_path(sport_section) %></td>
+          <td><%= link_to 'Destroy', sport_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -41,4 +43,6 @@
 
 <br>
 
-<%= link_to 'New Sport Section', new_sport_section_path %>
+<% if current_user.owner? %>
+  <%= link_to 'New Sport Section', new_sport_section_path %>
+<% end %>

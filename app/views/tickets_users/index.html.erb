@@ -43,7 +43,6 @@
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>
         <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Destroy', TicketsUser.find_by(ticket_id: ticket.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td>
           <%= button_to 'Unsubscribe', {controller: 'tickets_users', action: 'destroy',  
               id: TicketsUser.find_by(ticket_id: ticket.id, user_id: current_user.id)}, method: :delete %>              
