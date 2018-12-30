@@ -22,7 +22,6 @@ class SportSectionsUsersController < ApplicationController
   # POST /sport_sections_users
   def create
     @sport_sections_user = SportSectionsUser.new(sport_sections_user_params)
-
     if @sport_sections_user.save
       redirect_to @sport_sections_user, notice: 'Sport sections user was successfully created.'
     else

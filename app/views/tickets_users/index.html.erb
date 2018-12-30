@@ -43,6 +43,10 @@
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>
         <td><%= link_to 'Show', ticket %></td>
+        <% if current_user.owner? %>
+          <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+          <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         <% if current_user.user? %>
           <td>
             <%= button_to 'Unsubscribe', {controller: 'tickets_users', action: 'destroy',  

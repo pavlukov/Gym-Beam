@@ -43,7 +43,7 @@
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>
         <td><%= link_to 'Show', ticket %></td>
-        <% if current_user.owner? %>
+        <% if current_user.owner? and TicketsUser.where(ticket_id: ticket.id, user_id: current_user.id).count > 0 %>
           <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
           <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

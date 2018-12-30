@@ -32,6 +32,10 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.save
+        if current_user.owner?
+          TicketsUser.create(ticket_id: @ticket.id, user_id: current_user.id)
+        end
+
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
