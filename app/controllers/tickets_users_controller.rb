@@ -25,10 +25,14 @@ class TicketsUsersController < ApplicationController
   # POST /tickets_users
   # POST /tickets_users.json
   def create
-    @tickets_user = TicketsUser.create(ticket_id: params[:id], user_id: current_user.id)
-    sport_sections = Ticket.find(params[:id]).sport_sections
-    sport_sections.each do |section|
-      sport_sections_user = SportSectionsUser.create(sport_section_id: section.id, user_id: current_user.id)
+    @tickets_user = TicketsUser.new(ticket_id: params[:id], user_id: current_user.id)
+    authorize @tickets_user
+
+    if @tickets_user.save
+      sport_sections = Ticket.find(params[:id]).sport_sections
+      sport_sections.each do |section|
+        sport_sections_user = SportSectionsUser.create(sport_section_id: section.id, user_id: current_user.id)
+      end
     end
     #binding.irb
     #current_user.sport_sections << Ticket.find(params[:id]).sport_sections
@@ -53,6 +57,8 @@ class TicketsUsersController < ApplicationController
   # DELETE /tickets_users/1.json
   def destroy
     ticket_user = TicketsUser.find(params[:id])
+    authorize ticket_user
+
     ticket_user.destroy
     redirect_to tickets_users_url
   end

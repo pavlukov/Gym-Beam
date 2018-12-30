@@ -27,8 +27,8 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    authorize current_user
     @ticket = Ticket.new(ticket_params)
+    authorize @ticket
 
     respond_to do |format|
       if @ticket.save
@@ -44,7 +44,8 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
   def update
-    authorize current_user
+    authorize @ticket
+
     respond_to do |format|
       if @ticket.update(ticket_params)
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
@@ -59,7 +60,8 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
-    authorize current_user
+    authorize @ticket
+
     @ticket.destroy
     respond_to do |format|
       format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
