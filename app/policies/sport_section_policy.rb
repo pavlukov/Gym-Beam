@@ -4,10 +4,10 @@ class SportSectionPolicy < ApplicationPolicy
   end
 
   def update?
-    user.owner?
+    user.owner? and SportSectionsUser.where(sport_section_id: record.id, user_id: user.id).count > 0
   end
 
   def destroy?
-    user.owner?
+    user.owner? and SportSectionsUser.where(sport_section_id: record.id, user_id: user.id).count > 0
   end
 end

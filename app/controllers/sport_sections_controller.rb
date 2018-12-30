@@ -34,12 +34,12 @@ class SportSectionsController < ApplicationController
     @sport_section = SportSection.new(sport_section_params)
     authorize @sport_section
 
-    if current_user.owner?
-      SportSectionsUser.create(sport_section_id: @sport_section.id, user_id: current_user)
-    end
-
     respond_to do |format|
       if @sport_section.save
+        if current_user.owner?
+          SportSectionsUser.create(sport_section_id: @sport_section.id, user_id: current_user.id)
+        end
+
         format.html { redirect_to @sport_section, notice: 'Sport section was successfully created.' }
         format.json { render :show, status: :created, location: @sport_section }
       else

@@ -4,10 +4,10 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def update?
-    user.owner? and user.tickets.find(record.id)
+    user.owner? and TicketsUser.where(ticket_id: record.id, user_id: user.id).count > 0
   end
 
   def destroy?
-    user.owner? and user.tickets.find(record.id)
+    user.owner? and TicketsUser.where(ticket_id: record.id, user_id: user.id).count > 0
   end
 end

@@ -24,7 +24,7 @@
 
 <%= render partial: "comments/template", locals: {commentable: @ticket, new_comment: @comment} %>
 
-<% if current_user.owner? %>
+<% if current_user.owner? and TicketsUser.where(ticket_id: @ticket.id, user_id: current_user.id).count > 0 %>
   <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <% end %>
 <%= link_to 'Back', tickets_path %>

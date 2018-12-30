@@ -31,7 +31,7 @@
         <td><%= sport_section.coach_name %></td>
         <td><%= sport_section.description %></td>
         <td><%= link_to 'Show', sport_section %></td>
-        <% if current_user.owner? %>
+        <% if current_user.owner? and SportSectionsUser.where(sport_section_id: sport_section.id, user_id: current_user.id).count > 0 %>
           <td><%= link_to 'Edit', edit_sport_section_path(sport_section) %></td>
           <td><%= link_to 'Destroy', sport_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
