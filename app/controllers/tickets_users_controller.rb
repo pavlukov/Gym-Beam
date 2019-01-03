@@ -34,9 +34,6 @@ class TicketsUsersController < ApplicationController
         sport_sections_user = SportSectionsUser.create(sport_section_id: section.id, user_id: current_user.id)
       end
     end
-    #binding.irb
-    #current_user.sport_sections << Ticket.find(params[:id]).sport_sections
-    #current_user.save!
   end
 
   # PATCH/PUT /tickets_users/1

@@ -46,6 +46,7 @@ gem 'acts-as-taggable-on'
 
 group :development do
   gem 'annotate'
+  gem 'pry-rails'
 end
 
 group :development, :test do
