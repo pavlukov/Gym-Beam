@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :tickets
   resources :sport_sections
   resources :comments
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'callbacks' }
   root to: 'tickets_users#index'
   post 'tickets/add'
   get 'tags/:tag', to: 'sport_sections#index', as: :tag

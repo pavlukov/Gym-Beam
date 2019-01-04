@@ -43,6 +43,9 @@ gem 'kaminari'
 gem 'acts_as_commentable_with_threading'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 group :development do
   gem 'annotate'
