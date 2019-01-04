@@ -290,5 +290,7 @@ Devise.setup do |config|
 
   #Add your ID and secret here
   #ID first, secret second
-  config.omniauth :facebook, "299858423999409", "f64eaa02dff0227f79e27c3eccca9548"
+  config.omniauth :facebook, "299858423999409", "f64eaa02dff0227f79e27c3eccca9548",
+                  scope: 'email', info_fields: 'email,name'
+  config.omniauth :vkontakte, "6807109", "XskM6wNj5DJLNudeXDMK", scope: 'email', info_fields: 'email,name'
 end

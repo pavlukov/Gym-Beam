@@ -17,7 +17,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers:[:facebook]
+         :omniauthable, omniauth_providers:[:facebook, :vkontakte]
   has_and_belongs_to_many :tickets
   has_and_belongs_to_many :sport_sections
 
@@ -51,7 +51,6 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      binding.pry
     end
   end
 end
