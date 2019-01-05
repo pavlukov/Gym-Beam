@@ -4,7 +4,14 @@
       <%= link_to 'Gym Beam', root_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar">
-  
+
+    <ul class="search pull-left">
+      <p>
+        <%= text_field_tag :q, params[:q] %>
+        <%= submit_tag "Search", name: nil %>
+      </p>
+    </ul>
+
     <ul class="nav navbar-nav pull-right">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
