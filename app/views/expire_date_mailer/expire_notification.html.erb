@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Gym Beam Notificator</h1>
+    <p>
+      Your membership at <%= @ticket.sport_sections.to_a.last != section ? section.name + ',' : section.name %> expires <%= @ticket.expire_date %>
+      <br>
+    </p>
+  </body>
+</html>
