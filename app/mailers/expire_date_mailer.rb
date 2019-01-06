@@ -1,5 +1,5 @@
 class ExpireDateMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'notifications@gym_beam.com'
 
   def expire_notification
     @user = params[:user]

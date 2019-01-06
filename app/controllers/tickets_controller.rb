@@ -13,6 +13,7 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find(params[:id])
     @new_comment = Comment.build_from(@ticket, current_user.id, '')
+    #ExpireDateMailer.with(user: current_user, ticket: @ticket).expire_notification.deliver_now
   end
 
   # GET /tickets/new
