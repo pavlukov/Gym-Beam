@@ -26,6 +26,13 @@
   <%= @sport_section.address %>
 </p>
 
+<p>
+  <strong>Included in tickets:<strong>
+  <% @sport_section.tickets.to_a.each do |ticket| %>
+    <%= link_to ticket.id, controller: 'tickets', action: 'show', id: ticket.id %>
+  <% end %>
+</p>
+
 <%= render partial: "comments/template", locals: {commentable: @sport_section, new_comment: @comment} %>
 
 <% if current_user.owner? and SportSectionsUser.where(sport_section_id: @sport_section.id, user_id: current_user.id).count > 0 %>

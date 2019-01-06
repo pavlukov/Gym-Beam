@@ -33,6 +33,7 @@ class TicketsUsersController < ApplicationController
       sport_sections.each do |section|
         sport_sections_user = SportSectionsUser.create(sport_section_id: section.id, user_id: current_user.id)
       end
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -57,7 +58,7 @@ class TicketsUsersController < ApplicationController
     authorize ticket_user
 
     ticket_user.destroy
-    redirect_to tickets_users_url
+    redirect_back(fallback_location: root_path)
   end
 
   private
