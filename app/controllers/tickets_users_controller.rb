@@ -2,15 +2,9 @@ class TicketsUsersController < ApplicationController
   before_action :set_tickets_user, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets_users
-  # GET /tickets_users.json
   def index
     @order = params[:order]
     @tickets = current_user.tickets.order(@order).page params[:page]
-  end
-
-  # GET /tickets_users/1
-  # GET /tickets_users/1.json
-  def show
   end
 
   # GET /tickets_users/new
@@ -18,12 +12,7 @@ class TicketsUsersController < ApplicationController
     @tickets_user = TicketsUser.new
   end
 
-  # GET /tickets_users/1/edit
-  def edit
-  end
-
   # POST /tickets_users
-  # POST /tickets_users.json
   def create
     @tickets_user = TicketsUser.new(ticket_id: params[:id], user_id: current_user.id)
     authorize @tickets_user
@@ -38,21 +27,17 @@ class TicketsUsersController < ApplicationController
   end
 
   # PATCH/PUT /tickets_users/1
-  # PATCH/PUT /tickets_users/1.json
   def update
     respond_to do |format|
       if @tickets_user.update(tickets_user_params)
         format.html { redirect_to @tickets_user, notice: 'Tickets user was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tickets_user }
       else
         format.html { render :edit }
-        format.json { render json: @tickets_user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /tickets_users/1
-  # DELETE /tickets_users/1.json
   def destroy
     ticket_user = TicketsUser.find(params[:id])
     authorize ticket_user

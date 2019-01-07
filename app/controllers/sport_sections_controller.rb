@@ -24,10 +24,6 @@ class SportSectionsController < ApplicationController
     @sport_section = SportSection.new
   end
 
-  # GET /sport_sections/1/edit
-  def edit
-  end
-
   # POST /sport_sections
   # POST /sport_sections.json
   def create

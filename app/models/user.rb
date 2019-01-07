@@ -20,14 +20,10 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers:[:facebook, :vkontakte]
   has_and_belongs_to_many :tickets
   has_and_belongs_to_many :sport_sections
+  has_many :comments
 
   enum role: [:user, :owner, :admin]
-  after_initialize :set_default_role, if: :new_record?
   before_create :set_approved_status, if: :new_record?
-
-  def set_default_role
-    self.role ||= :user
-  end
 
   def set_approved_status
     if self.owner?
