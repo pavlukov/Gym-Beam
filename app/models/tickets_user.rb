@@ -10,7 +10,8 @@
 #
 
 class TicketsUser < ApplicationRecord
-  validates_uniqueness_of :ticket_id, message: 'You have already subscribed to this ticket', scope: :user_id
   belongs_to :ticket
   belongs_to :user
+
+  validates_uniqueness_of :ticket_id, message: 'You have already subscribed to this ticket', scope: :user_id
 end

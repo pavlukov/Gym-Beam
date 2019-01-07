@@ -2,7 +2,6 @@ class SportSectionsController < ApplicationController
   before_action :set_sport_section, only: [:show, :edit, :update, :destroy]
 
   # GET /sport_sections
-  # GET /sport_sections.json
   def index
     @order = params[:order]
     if params[:tag]
@@ -13,7 +12,6 @@ class SportSectionsController < ApplicationController
   end
 
   # GET /sport_sections/1
-  # GET /sport_sections/1.json
   def show
     @sport_section = SportSection.find(params[:id])
     @new_comment = Comment.build_from(@sport_section, current_user.id, '')
@@ -25,7 +23,6 @@ class SportSectionsController < ApplicationController
   end
 
   # POST /sport_sections
-  # POST /sport_sections.json
   def create
     @sport_section = SportSection.new(sport_section_params)
     authorize @sport_section
@@ -37,39 +34,32 @@ class SportSectionsController < ApplicationController
         end
 
         format.html { redirect_to @sport_section, notice: 'Sport section was successfully created.' }
-        format.json { render :show, status: :created, location: @sport_section }
       else
         format.html { render :new }
-        format.json { render json: @sport_section.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /sport_sections/1
-  # PATCH/PUT /sport_sections/1.json
   def update
     authorize @sport_section
 
     respond_to do |format|
       if @sport_section.update(sport_section_params)
         format.html { redirect_to @sport_section, notice: 'Sport section was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sport_section }
       else
         format.html { render :edit }
-        format.json { render json: @sport_section.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /sport_sections/1
-  # DELETE /sport_sections/1.json
   def destroy
     authorize @sport_section
 
     @sport_section.destroy
     respond_to do |format|
       format.html { redirect_to sport_sections_url, notice: 'Sport section was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

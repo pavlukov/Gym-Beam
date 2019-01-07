@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
-gem 'kaminari'
+gem 'kaminari' # pagination
 gem 'acts_as_commentable_with_threading'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on'
@@ -48,6 +48,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'whenever', require: false
 
 group :development do
   gem 'annotate'
