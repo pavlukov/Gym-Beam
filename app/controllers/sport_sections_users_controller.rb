@@ -6,17 +6,9 @@ class SportSectionsUsersController < ApplicationController
     @sport_sections_users = SportSectionsUser.all
   end
 
-  # GET /sport_sections_users/1
-  def show
-  end
-
   # GET /sport_sections_users/new
   def new
     @sport_sections_user = SportSectionsUser.new
-  end
-
-  # GET /sport_sections_users/1/edit
-  def edit
   end
 
   # POST /sport_sections_users

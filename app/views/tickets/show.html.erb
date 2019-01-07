@@ -22,6 +22,17 @@
   <%= @ticket.cost %>
 </p>
 
+<% if current_user.user? %>
+  <% if TicketsUser.where(ticket_id: @ticket.id, user_id: current_user.id).count == 0 %>
+    <td><%= button_to 'Subscribe', controller: 'tickets_users', action: 'create', id: @ticket.id %></td>
+  <% else %>
+    <td>
+      <%= button_to 'Unsubscribe', {controller: 'tickets_users', action: 'destroy',  
+          id: TicketsUser.find_by(ticket_id: @ticket.id, user_id: current_user.id)}, method: :delete %>              
+    </td>
+  <% end %>
+<% end %>
+
 <%= render partial: "comments/template", locals: {commentable: @ticket, new_comment: @comment} %>
 
 <% if current_user.owner? and TicketsUser.where(ticket_id: @ticket.id, user_id: current_user.id).count > 0 %>

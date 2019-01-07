@@ -1,0 +1,11 @@
+<h1>Sport sections Search</h1>
+
+<ul>
+  <% @sport_sections.each do |section| %>
+    <li>
+      <h3>
+        <%= link_to section.name, controller: "sport_sections", action: "show", id: section.id%>
+      </h3>
+    </li>
+  <% end %>
+</ul>
