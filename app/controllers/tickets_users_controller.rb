@@ -26,17 +26,6 @@ class TicketsUsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tickets_users/1
-  def update
-    respond_to do |format|
-      if @tickets_user.update(tickets_user_params)
-        format.html { redirect_to @tickets_user, notice: 'Tickets user was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
-    end
-  end
-
   # DELETE /tickets_users/1
   def destroy
     ticket_user = TicketsUser.find(params[:id])

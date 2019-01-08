@@ -15,14 +15,14 @@
       </th>
       <th>
         <% if @order == 'visits_remaining' %>
-          <%= link_to "Visits\u2713", controller: 'tickets', action: 'index' %>
+          <%= link_to "Visits\u2193", controller: 'tickets', action: 'index' %>
         <% else %>
           <%= link_to 'Visits', controller: 'tickets', action: 'index', order: :visits_remaining %>
         <% end %>
       </th>
       <th>
         <% if @order == 'cost' %>
-          <%= link_to "Cost\u2713", controller: 'tickets', action: 'index' %>
+          <%= link_to "Cost\u2193", controller: 'tickets', action: 'index' %>
         <% else %>
           <%= link_to 'Cost', controller: 'tickets', action: 'index', order: :cost %>
         <% end %>

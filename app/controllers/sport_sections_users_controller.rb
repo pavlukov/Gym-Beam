@@ -3,7 +3,8 @@ class SportSectionsUsersController < ApplicationController
 
   # GET /sport_sections_users
   def index
-    @sport_sections_users = SportSectionsUser.all
+    @order = params[:order]
+    @sport_sections = current_user.sport_sections.order(@order).page params[:page]
   end
 
   # GET /sport_sections_users/new
@@ -18,15 +19,6 @@ class SportSectionsUsersController < ApplicationController
       redirect_to @sport_sections_user, notice: 'Sport sections user was successfully created.'
     else
       render :new
-    end
-  end
-
-  # PATCH/PUT /sport_sections_users/1
-  def update
-    if @sport_sections_user.update(sport_sections_user_params)
-      redirect_to @sport_sections_user, notice: 'Sport sections user was successfully updated.'
-    else
-      render :edit
     end
   end
 
