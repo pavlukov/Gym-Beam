@@ -5,6 +5,12 @@
   <%= @sport_section.name %>
 </p>
 
+<div id='tag_cloud'>
+  <% tag_cloud @sport_section.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
 <p>
   <strong>Coach name:</strong>
   <%= @sport_section.coach_name %>
@@ -15,5 +21,21 @@
   <%= @sport_section.description %>
 </p>
 
-<%= link_to 'Edit', edit_sport_section_path(@sport_section) %> |
+<p>
+  <strong>Address:</strong>
+  <%= @sport_section.address %>
+</p>
+
+<p>
+  <strong>Included in tickets:<strong>
+  <% @sport_section.tickets.to_a.each do |ticket| %>
+    <%= link_to ticket.id, controller: 'tickets', action: 'show', id: ticket.id %>
+  <% end %>
+</p>
+
+<%= render partial: "comments/template", locals: {commentable: @sport_section, new_comment: @comment} %>
+
+<% if current_user.owner? and SportSectionsUser.where(sport_section_id: @sport_section.id, user_id: current_user.id).count > 0 %>
+	<%= link_to 'Edit', edit_sport_section_path(@sport_section) %> |
+<% end %>
 <%= link_to 'Back', sport_sections_path %>

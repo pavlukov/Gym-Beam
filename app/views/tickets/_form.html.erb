@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :sport_sections %>
+    <%= form.collection_select(:sport_section_ids, current_user.sport_sections, :id, :name, {}, {multiple: true}) %>
+  </div>
+
+  <div class="field">
     <%= form.label :expire_date %>
     <%= form.date_select :expire_date %>
   </div>
@@ -23,7 +28,7 @@
 
   <div class="field">
     <%= form.label :cost %>
-    <%= form.text_field :cost %>
+    <%= form.text_field :cost, required: true %>
   </div>
 
   <div class="actions">

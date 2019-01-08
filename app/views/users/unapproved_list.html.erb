@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Unapproved users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= button_to 'Confirm', controller: 'users', action: 'confirm', id: user.id %></td>
+        <td><%= button_to 'Reject', {controller: 'users', action: 'reject', id: user.id}, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

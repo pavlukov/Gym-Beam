@@ -13,17 +13,27 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :coach_name %>
-    <%= form.text_field :coach_name %>
+    <%= form.text_field :coach_name, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, required: true %>
+  </div>
+
+  <div class='field'>
+    <%= form.label :tag_list, 'Tags (separated by commas)' %><br/>
+    <%= form.text_field :tag_list, value: sport_section.tags.pluck(:name).join(', ') %>
   </div>
 
   <div class="actions">

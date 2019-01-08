@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My sport Sections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        <% if @order == 'name' and !@desc %>
+          <%= link_to "Name\u2b07", controller: 'sport_sections_users', action: 'index', order: :name, desc: true %>
+        <% elsif @order == 'name' and @desc %>
+          <%= link_to "Name\u2b06", controller: 'sport_sections_users', action: 'index', order: :name %>
+        <% else %>
+          <%= link_to 'Name', controller: 'sport_sections_users', action: 'index', order: :name %>
+        <% end %>
+      </th>
+      <th>
+        <% if @order == 'coach_name' and !@desc %>
+          <%= link_to "Coah name\u2b07", controller: 'sport_sections_users', action: 'index', order: :coach_name, desc: true %>
+        <% elsif @order == 'coach_name' and @desc %>
+          <%= link_to "Coah name\u2b06", controller: 'sport_sections_users', action: 'index', order: :coach_name %>
+        <% else %>
+          <%= link_to 'Coach name', controller: 'sport_sections_users', action: 'index', order: :coach_name %>
+        <% end %>
+      </th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sport_sections.each do |sport_section| %>
+      <tr>
+        <td><%= sport_section.name %></td>
+        <td><%= sport_section.coach_name %></td>
+        <td><%= sport_section.description %></td>
+        <td><%= link_to 'Show', sport_section %></td>
+        <% if current_user.owner? and SportSectionsUser.where(sport_section_id: sport_section.id, user_id: current_user.id).count > 0 %>
+          <td><%= link_to 'Edit', edit_sport_section_path(sport_section) %></td>
+          <td><%= link_to 'Destroy', sport_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @sport_sections %>
+
+<br>
+
+<% if current_user.owner? %>
+  <%= link_to 'New Sport Section', new_sport_section_path %>
+<% end %>

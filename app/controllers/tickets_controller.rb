@@ -2,14 +2,20 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets
-  # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @desc = params[:desc]
+    @order = params[:order]
+    if @desc
+      @tickets = Ticket.all.order("#{@order} DESC").page params[:page]
+    else
+      @tickets = Ticket.all.order(@order).page params[:page]
+    end
   end
 
   # GET /tickets/1
-  # GET /tickets/1.json
   def show
+    @ticket = Ticket.find(params[:id])
+    @new_comment = Comment.build_from(@ticket, current_user.id, '')
   end
 
   # GET /tickets/new
@@ -17,47 +23,44 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
-  # GET /tickets/1/edit
-  def edit
-  end
-
   # POST /tickets
-  # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
+    authorize @ticket
 
     respond_to do |format|
       if @ticket.save
+        if current_user.owner?
+          TicketsUser.create(ticket_id: @ticket.id, user_id: current_user.id)
+        end
+
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /tickets/1
-  # PATCH/PUT /tickets/1.json
   def update
+    authorize @ticket
+
     respond_to do |format|
       if @ticket.update(ticket_params)
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /tickets/1
-  # DELETE /tickets/1.json
   def destroy
+    authorize @ticket
+
     @ticket.destroy
     respond_to do |format|
       format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,6 +72,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost)
+      params.require(:ticket).permit(:expire_date, :visits_remaining, :cost, :order, :sport_section_ids => [])
     end
 end

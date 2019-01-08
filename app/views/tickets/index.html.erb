@@ -5,9 +5,34 @@
 <table>
   <thead>
     <tr>
-      <th>Expire date</th>
-      <th>Visits remaining</th>
-      <th>Cost</th>
+      <th>Sport sections</th>
+      <th>
+        <% if @order == 'expire_date' and !@desc %>
+          <%= link_to "Expire date\u2b07", controller: 'tickets', action: 'index', order: :expire_date, desc: true %>
+        <% elsif @order == 'expire_date' and @desc %>
+          <%= link_to "Expire date\u2b06", controller: 'tickets', action: 'index', order: :expire_date %>
+        <% else %>
+          <%= link_to 'Expire date', controller: 'tickets', action: 'index', order: :expire_date %>
+        <% end %>
+      </th>
+      <th>
+        <% if @order == 'visits_remaining' and !@desc %>
+          <%= link_to "Visits\u2b07", controller: 'tickets', action: 'index', order: :visits_remaining, desc: true %>
+        <% elsif @order == 'visits_remaining' and @desc %>
+          <%= link_to "Visits\u2b06", controller: 'tickets', action: 'index', order: :visits_remaining %>
+        <% else %>
+          <%= link_to 'Visits', controller: 'tickets', action: 'index', order: :visits_remaining %>
+        <% end %>
+      </th>
+      <th>
+        <% if @order == 'cost' and !@desc %>
+          <%= link_to "Cost\u2b07", controller: 'tickets', action: 'index', order: :cost, desc: true %>
+        <% elsif @order == 'cost' and @desc %>
+          <%= link_to "Cost\u2b06", controller: 'tickets', action: 'index', order: :cost %>
+        <% else %>
+          <%= link_to 'Cost', controller: 'tickets', action: 'index', order: :cost %>
+        <% end %>
+      </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,17 +40,30 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr>
+        <td>
+          <% ticket.sport_sections.to_a.each do |section| %>
+            <%= ticket.sport_sections.to_a.last != section ? section.name + ',' : section.name %>
+          <% end %>
+        </td>
         <td><%= ticket.expire_date %></td>
         <td><%= ticket.visits_remaining %></td>
         <td><%= ticket.cost %></td>
         <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.owner? and TicketsUser.where(ticket_id: ticket.id, user_id: current_user.id).count > 0 %>
+          <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+          <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if current_user.user? and ticket.expire_date > Date.today %>
+          <td><%= button_to 'Subscribe', controller: 'tickets_users', action: 'create', id: ticket.id %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @tickets %>
 
 <br>
 
-<%= link_to 'New Ticket', new_ticket_path %>
+<% if current_user.owner? %>
+  <%= link_to 'New Ticket', new_ticket_path %>
+<% end %>
