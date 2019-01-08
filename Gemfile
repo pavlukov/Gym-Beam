@@ -49,9 +49,10 @@ gem 'omniauth-vkontakte'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'whenever', require: false # sending emails in background
+gem 'faker', git:'https://github.com/stympy/faker.git', branch: 'master' # seeds
 
 group :development do
-  gem 'annotate'
+  gem 'annotate' # columns in comments
   gem 'pry-rails'
 end
 

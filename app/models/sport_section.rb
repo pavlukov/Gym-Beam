@@ -8,8 +8,10 @@
 #  description :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  adress      :string
+#  address     :string
+#  searching   :boolean          default(FALSE)
 #
+
 require 'elasticsearch/model'
 
 class SportSection < ApplicationRecord

@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 1c4d21a8c450b86c10f1a8c27d837a09245488df
+  branch: master
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -294,6 +302,7 @@ DEPENDENCIES
   devise
   elasticsearch-model
   elasticsearch-rails
+  faker!
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
