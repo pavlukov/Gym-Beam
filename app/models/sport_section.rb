@@ -27,7 +27,7 @@ class SportSection < ApplicationRecord
   has_and_belongs_to_many :tickets
 
   validates :name, presence: true
-  validates :coach_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  validates :coach_name, presence: true
   validates :address, presence: true
 
   settings index: { number_of_shards: 1 } do
