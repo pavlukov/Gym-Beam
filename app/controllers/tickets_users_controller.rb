@@ -36,6 +36,10 @@ class TicketsUsersController < ApplicationController
     ticket_user = TicketsUser.find(params[:id])
     authorize ticket_user
 
+    ticket_user.ticket.sport_sections.to_a.each do |section|
+      sport_sections_user = SportSectionsUser.where(user_id: current_user.id, sport_section_id: section.id)
+      sport_sections_user.destroy(sport_sections_user.to_a.first.id)
+    end
     ticket_user.destroy
     redirect_back(fallback_location: root_path)
   end
