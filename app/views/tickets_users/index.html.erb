@@ -7,22 +7,28 @@
     <tr>
       <th>Sport sections</th>
       <th>
-        <% if @order == 'expire_date' %>
-          <%= link_to "Expire date\u2193", controller: 'tickets_users', action: 'index' %>
+        <% if @order == 'expire_date' and !@desc %>
+          <%= link_to "Expire date\u2b07", controller: 'tickets_users', action: 'index', order: :expire_date, desc: true %>
+        <% elsif @order == 'expire_date' and @desc %>
+          <%= link_to "Expire date\u2b06", controller: 'tickets_users', action: 'index', order: :expire_date %>
         <% else %>
           <%= link_to 'Expire date', controller: 'tickets_users', action: 'index', order: :expire_date %>
         <% end %>
       </th>
       <th>
-        <% if @order == 'visits_remaining' %>
-          <%= link_to "Visits\u2193", controller: 'tickets_users', action: 'index' %>
+        <% if @order == 'visits_remaining' and !@desc %>
+          <%= link_to "Visits\u2b07", controller: 'tickets_users', action: 'index', order: :visits_remaining, desc: true %>
+        <% elsif @order == 'visits_remaining' and @desc %>
+          <%= link_to "Visits\u2b06", controller: 'tickets_users', action: 'index', order: :visits_remaining %>
         <% else %>
           <%= link_to 'Visits', controller: 'tickets_users', action: 'index', order: :visits_remaining %>
         <% end %>
       </th>
       <th>
-        <% if @order == 'cost' %>
-          <%= link_to "Cost\u2193", controller: 'tickets_users', action: 'index' %>
+        <% if @order == 'cost' and !@desc %>
+          <%= link_to "Cost\u2b07", controller: 'tickets_users', action: 'index', order: :cost, desc: true %>
+        <% elsif @order == 'cost' and @desc %>
+          <%= link_to "Cost\u2b06", controller: 'tickets_users', action: 'index', order: :cost %>
         <% else %>
           <%= link_to 'Cost', controller: 'tickets_users', action: 'index', order: :cost %>
         <% end %>

@@ -6,15 +6,19 @@
   <thead>
     <tr>
       <th>
-        <% if @order == 'name' %>
-          <%= link_to "Name\u2193", controller: 'sport_sections_users', action: 'index' %>
+        <% if @order == 'name' and !@desc %>
+          <%= link_to "Name\u2b07", controller: 'sport_sections_users', action: 'index', order: :name, desc: true %>
+        <% elsif @order == 'name' and @desc %>
+          <%= link_to "Name\u2b06", controller: 'sport_sections_users', action: 'index', order: :name %>
         <% else %>
           <%= link_to 'Name', controller: 'sport_sections_users', action: 'index', order: :name %>
         <% end %>
       </th>
       <th>
-        <% if @order == 'coach_name' %>
-          <%= link_to "Coah name\u2193", controller: 'sport_sections_users', action: 'index' %>
+        <% if @order == 'coach_name' and !@desc %>
+          <%= link_to "Coah name\u2b07", controller: 'sport_sections_users', action: 'index', order: :coach_name, desc: true %>
+        <% elsif @order == 'coach_name' and @desc %>
+          <%= link_to "Coah name\u2b06", controller: 'sport_sections_users', action: 'index', order: :coach_name %>
         <% else %>
           <%= link_to 'Coach name', controller: 'sport_sections_users', action: 'index', order: :coach_name %>
         <% end %>

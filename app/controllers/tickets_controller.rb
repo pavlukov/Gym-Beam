@@ -3,8 +3,13 @@ class TicketsController < ApplicationController
 
   # GET /tickets
   def index
+    @desc = params[:desc]
     @order = params[:order]
-    @tickets = Ticket.all.order(@order).page params[:page]
+    if @desc
+      @tickets = Ticket.all.order("#{@order} DESC").page params[:page]
+    else
+      @tickets = Ticket.all.order(@order).page params[:page]
+    end
   end
 
   # GET /tickets/1

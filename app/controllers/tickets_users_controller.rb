@@ -3,8 +3,13 @@ class TicketsUsersController < ApplicationController
 
   # GET /tickets_users
   def index
+    @desc = params[:desc]
     @order = params[:order]
-    @tickets = current_user.tickets.order(@order).page params[:page]
+    if @desc
+      @tickets = current_user.tickets.order("#{@order} DESC").page params[:page]
+    else
+      @tickets = current_user.tickets.order(@order).page params[:page]
+    end
   end
 
   # GET /tickets_users/new

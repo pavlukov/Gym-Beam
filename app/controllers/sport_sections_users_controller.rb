@@ -3,8 +3,13 @@ class SportSectionsUsersController < ApplicationController
 
   # GET /sport_sections_users
   def index
+    @desc = params[:desc]
     @order = params[:order]
-    @sport_sections = current_user.sport_sections.order(@order).page params[:page]
+    if @desc
+      @sport_sections = current_user.sport_sections.order("#{@order} DESC").page params[:page]
+    else
+      @sport_sections = current_user.sport_sections.order(@order).page params[:page]
+    end
   end
 
   # GET /sport_sections_users/new

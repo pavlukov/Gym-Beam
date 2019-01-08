@@ -3,11 +3,20 @@ class SportSectionsController < ApplicationController
 
   # GET /sport_sections
   def index
+    @desc = params[:desc]
     @order = params[:order]
     if params[:tag]
-      @sport_sections = SportSection.tagged_with(params[:tag]).order(@order).page params[:page]
+      if @desc
+        @sport_sections = SportSection.tagged_with(params[:tag]).order("#{@order} DESC").page params[:page]
+      else
+        @sport_sections = SportSection.tagged_with(params[:tag]).order(@order).page params[:page]
+      end
     else
-      @sport_sections = SportSection.all.order(@order).page params[:page]
+      if @desc
+        @sport_sections = SportSection.all.order("#{@order} DESC").page params[:page]
+      else
+        @sport_sections = SportSection.all.order(@order).page params[:page]
+      end
     end
   end
 
