@@ -8,8 +8,10 @@
 #  description :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  adress      :string
+#  address     :string
+#  searching   :boolean          default(FALSE)
 #
+
 require 'elasticsearch/model'
 
 class SportSection < ApplicationRecord
@@ -18,9 +20,15 @@ class SportSection < ApplicationRecord
 
   acts_as_taggable
   acts_as_commentable
+
   paginates_per 10
+
   has_and_belongs_to_many :users
   has_and_belongs_to_many :tickets
+
+  validates :name, presence: true
+  validates :coach_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  validates :address, presence: true
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
