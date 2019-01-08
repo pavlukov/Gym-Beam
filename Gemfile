@@ -48,7 +48,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-gem 'whenever', require: false
+gem 'whenever', require: false # sending emails in background
 
 group :development do
   gem 'annotate'

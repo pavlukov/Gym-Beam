@@ -18,7 +18,7 @@ class SportSection < ApplicationRecord
 
   acts_as_taggable
   acts_as_commentable
-  paginates_per 5
+  paginates_per 10
   has_and_belongs_to_many :users
   has_and_belongs_to_many :tickets
 

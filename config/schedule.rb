@@ -9,7 +9,3 @@ every 1.day, at: '12pm' do
   rake 'send_email:send_email'
   command  "echo 'sending email'"
 end
-
-every 1.hour  do
-  command "echo 'zdarova'"
-end

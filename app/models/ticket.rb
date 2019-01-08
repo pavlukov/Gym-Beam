@@ -13,7 +13,7 @@
 class Ticket < ApplicationRecord
   acts_as_taggable
   acts_as_commentable
-  paginates_per 5
+  paginates_per 10
   has_many :tickets_users, dependent: :destroy
   has_many :users, through: :tickets_users
   has_and_belongs_to_many :sport_sections
