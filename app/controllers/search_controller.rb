@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     if params[:q].nil?
       @sport_sections = []
     else
-      @sport_sections = SportSection.search("*#{params[:q]}*")
+      @sport_sections = SportSection.search("*#{params[:q]}*").page params[:page]
     end
   end
 end
