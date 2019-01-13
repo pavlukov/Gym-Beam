@@ -18,3 +18,43 @@
  *= require_tree .
  *= require_self
  */
+
+.email {
+	color: white;
+}
+
+.search {
+	float: right;
+  	padding: 6px;
+  	border: none;
+  	margin-top: 8px;
+  	margin-right: 16px;
+  	font-size: 17px;
+}
+
+.search input {
+	border-radius: 3px;
+}
+
+table {
+	width: 100%;
+	margin: 50px 0 50px 0;
+}
+
+th {
+	height: 50px;
+	text-align: left;
+	background-color: #262626;
+  	color: #9d9d9d;
+}
+
+th, td {
+	border-bottom: 1px solid #ddd;
+	padding: 15px;
+}
+
+th a {
+	color: #9d9d9d;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
