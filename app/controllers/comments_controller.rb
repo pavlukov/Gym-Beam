@@ -40,6 +40,11 @@ class CommentsController < ApplicationController
     return "" if comment_id.blank?
 
     parent_comment = Comment.find comment_id
-    @comment.move_to_child_of(parent_comment)
+    if parent_comment.parent_id.nil?
+      @comment.move_to_child_of(parent_comment)
+    else
+      parent_comment = Comment.find parent_comment.parent_id
+      @comment.move_to_child_of(parent_comment)
+    end
   end
 end
