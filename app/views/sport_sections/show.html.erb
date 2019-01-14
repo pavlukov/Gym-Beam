@@ -5,12 +5,6 @@
   <%= @sport_section.name %>
 </p>
 
-<div id='tag_cloud'>
-  <% tag_cloud @sport_section.tag_counts, %w{s m l} do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div>
-
 <p>
   <strong>Coach name:</strong>
   <%= @sport_section.coach_name %>
@@ -32,6 +26,12 @@
     <%= link_to ticket.id, controller: 'tickets', action: 'show', id: ticket.id %>
   <% end %>
 </p>
+
+<div id='tag_cloud'>
+  <% tag_cloud @sport_section.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
 
 <%= render partial: "comments/template", locals: {commentable: @sport_section, new_comment: @comment} %>
 

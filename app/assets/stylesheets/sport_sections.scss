@@ -3,9 +3,47 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #tag_cloud {
-  width: 400px;
-  line-height: 1.6em;
-  .s { font-size: 0.8em; }
-  .m { font-size: 1.2em; }
-  .l { font-size: 1.8em; }
+  list-style: none;
+  margin: 0;
+  overflow: hidden; 
+  padding: 0;
+  .s { 
+  	font-size: 0.8em; 
+  	background: #eee;
+	  border-radius: 3px 0 0 3px;
+	  color: #999;
+	  display: inline-block;
+	  height: 14px;
+	  line-height: 14px;
+	  padding: 0 20px 0 23px;
+	  position: relative;
+	  margin: 0 5px 5px 0;
+	  text-decoration: none;
+  }
+  .m { 
+  	font-size: 1.2em; 
+  	background: #eee;
+	  border-radius: 3px 0 0 3px;
+	  color: #999;
+	  display: inline-block;
+	  height: 26px;
+	  line-height: 26px;
+	  padding: 0 20px 0 23px;
+	  position: relative;
+	  margin: 0 5px 5px 0;
+	  text-decoration: none;
+  }
+  .l { 
+  	font-size: 1.8em; 
+  	background: #eee;
+	  border-radius: 3px 0 0 3px;
+	  color: #999;
+	  display: inline-block;
+	  height: 32px;
+	  line-height: 32px;
+	  padding: 0 20px 0 23px;
+	  position: relative;
+	  margin: 0 5px 5px 0;
+	  text-decoration: none;
+  }
 }

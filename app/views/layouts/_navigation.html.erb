@@ -16,11 +16,11 @@
       <% if user_signed_in? %>
         <% if current_user.admin? %>
           <li><%= link_to 'Unapproved users', users_unapproved_path %></li> 
+        <% end %>      
+        <% if !current_user.admin? %>
+          <li><%= link_to 'My tickets', tickets_users_path %></li>
+          <li><%= link_to 'My sport sections', sport_sections_users_path %></li>
         <% end %>
-      <% end %>
-      <% if !current_user.admin? %>
-        <li><%= link_to 'My tickets', tickets_users_path %></li>
-        <li><%= link_to 'My sport sections', sport_sections_users_path %></li>
       <% end %>
       <li><%= link_to 'Tickets', tickets_path %></li>
       <li><%= link_to 'Sport sections', sport_sections_path %></li>
