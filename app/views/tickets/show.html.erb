@@ -3,7 +3,7 @@
 <p>
   <strong>Sport sections:</strong>
   <% @ticket.sport_sections.to_a.each do |section| %>
-    <%= @ticket.sport_sections.to_a.last != section ? section.name + ',' : section.name %>
+    <%= link_to @ticket.sport_sections.to_a.last != section ? section.name + ',' : section.name, section %>
   <% end %>
 </p>
 
